@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'LOADED' : 'NOT LOADED');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 
 let mongoServer;
@@ -16,15 +15,15 @@ const connectDB = async () => {
     // If MONGODB_URI is provided, try connecting to it first
     if (uri) {
       try {
-        console.log(`Attempting connection to MongoDB at: ${uri} ...`);
+        console.log(`Attempting connection to MongoDB at: ...`);
         await mongoose.connect(uri, {
           serverSelectionTimeoutMS: 2500 // Quick timeout if local mongod is not running
         });
         dbType = 'standalone';
-        console.log(`Connected successfully to standalone MongoDB: ${uri}`);
+        console.log("Connected successfully to standalone MongoDB:");
         return { server: null, type: dbType };
       } catch (connErr) {
-        console.warn(`Could not connect to external MongoDB at ${uri} (${connErr.message}).`);
+        console.warn(`Could not connect to external MongoDB at (${connErr.message}).`);
         console.log('Falling back seamlessly to In-Memory MongoDB Server...');
       }
     }

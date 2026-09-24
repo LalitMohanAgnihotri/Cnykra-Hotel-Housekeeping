@@ -1,10 +1,12 @@
-require('dotenv').config();
+const path = require('path');
 
-console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'LOADED' : 'NOT LOADED');
+require('dotenv').config({
+  path: path.resolve(__dirname, '../.env')
+});
+
 const express = require('express');
 const cors = require('cors');
 const { connectDB, getDBType } = require('./config/db');
-const seed = require('./seed');
 
 const app = express();
 
@@ -31,7 +33,6 @@ const PORT = process.env.PORT || 5000;
 async function startServer() {
   // Connect to in-memory MongoDB and seed data
   await connectDB();
-  await seed();
 
   app.listen(PORT, () => {
     console.log(`\nCnykra Server running on http://localhost:${PORT}`);
