@@ -536,6 +536,7 @@ button, input, select, textarea {
 
 .filter-tabs {
   display: flex;
+  align-items: center;
   background: #ffffff;
   border: 1px solid var(--border-color);
   padding: 4px;
@@ -543,6 +544,24 @@ button, input, select, textarea {
   gap: 4px;
   box-shadow: var(--shadow-sm);
   overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  min-width: 0;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.filter-tabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.filter-tabs::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
 }
 
 .filter-tab {
@@ -1617,6 +1636,38 @@ button, input, select, textarea {
 }
 
 @media (max-width: 768px) {
+    .filter-tabs {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .filter-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 0.78rem;
+  }
+
+  .hk-stats-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .hk-stat-card {
+    min-width: 0;
+    padding: 12px 14px;
+  }
+
+  .hk-stat-card .stat-num {
+    font-size: 1.4rem;
+  }
+
+  .hk-stat-card .stat-label {
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
   .app-header {
     flex-direction: column;
     align-items: stretch;
@@ -1679,6 +1730,38 @@ button, input, select, textarea {
   .kpi-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
+  }
+    .filter-tabs {
+    width: 100%;
+    padding: 3px;
+    gap: 3px;
+  }
+
+  .filter-tab {
+    padding: 8px 10px;
+    font-size: 0.74rem;
+  }
+
+  .tab-count {
+    font-size: 0.68rem;
+    padding: 1px 6px;
+  }
+
+  .hk-stats-strip {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .hk-stat-card {
+    padding: 11px 12px;
+  }
+
+  .hk-stat-card .stat-num {
+    font-size: 1.3rem;
+  }
+
+  .hk-stat-card .stat-label {
+    font-size: 0.68rem;
   }
 }
 
